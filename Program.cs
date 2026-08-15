@@ -7,6 +7,7 @@ static void Menu()
     Console.Clear();
     Console.WriteLine("S = segundos => Ex: 10s = 10 segundos");
     Console.WriteLine("M = minutos => Ex: 10m = 10 minutos");
+    Console.WriteLine("H = horas => Ex: 2h = 2 horas");
     Console.WriteLine("0 = Sair");
     Console.WriteLine("Quanto tempo quer contar: ");
 
@@ -28,6 +29,10 @@ static void Menu()
     {
         multiplier = 60;
     }
+    if (type == 'h')
+    {
+        multiplier = 3600;
+    }
     if (time < 0)
     {
         Console.Clear();
@@ -37,14 +42,12 @@ static void Menu()
         System.Environment.Exit(0);
     }
     PreStart(time * multiplier);    
-
-
 }
 
 static void PreStart(int time)
 {
     Console.Clear();
-    Console.WriteLine("Read----");
+    Console.WriteLine("Ready----");
     Thread.Sleep(1000);
     Console.WriteLine("Set----");
     Thread.Sleep(1000);
@@ -56,12 +59,15 @@ static void PreStart(int time)
 
 static void Start(int time) 
 {
-    for (int currentTime = 1; currentTime <= time; currentTime++)
+    int currentTime = 0;
+
+    do
     {
         Console.Clear();
+        currentTime++;
         Console.WriteLine(currentTime);
         Thread.Sleep(1000);
-    }
+    } while(currentTime < time);
        
 
 
