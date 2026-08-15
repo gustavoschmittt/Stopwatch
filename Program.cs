@@ -56,20 +56,17 @@ static void PreStart(int time)
 
 static void Start(int time) 
 {
-    
-   
-    int currentTime =  0;
-
-    while (currentTime < time) {
+    for (int currentTime = 1; currentTime <= time; currentTime++)
+    {
         Console.Clear();
-        currentTime++;
         Console.WriteLine(currentTime);
         Thread.Sleep(1000);
     }
+       
+
 
     Console.Clear();
     Console.WriteLine("Stopwatch finalizado!");
     Thread.Sleep(1000);
     Menu();
-
 }
