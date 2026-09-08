@@ -1,6 +1,4 @@
-﻿
-Menu();
-
+﻿Menu();
 
 static void Menu()
 {   bool successTime = false;
@@ -15,11 +13,11 @@ static void Menu()
         Console.WriteLine("0 = Sair");
         Console.WriteLine("Quanto tempo quer contar: ");
 
-        string data = Console.ReadLine().ToLower(); 
+        string data = Console.ReadLine()!.ToLower(); 
         if (data == "0")
         {
             Console.Clear();
-            Console.WriteLine("--Encerrando Stopwacth--");
+            Console.WriteLine("--Encerrando Stopwatch--");
             Thread.Sleep(2000);
             Console.Clear();
             System.Environment.Exit(0);
@@ -33,14 +31,13 @@ static void Menu()
             continue;
         }
 
-        successType = char.TryParse(data.Substring(data.Length-1,1), out char type);
+        char type = data[data.Length -1];
         successTime = int.TryParse(data.Substring( 0, data.Length -1), out int time);
         int multiplier = 1;
+
         successType = type == 's' || type == 'm'|| type == 'h';
         if (successType)
         {
-            if (type == 's')
-                multiplier = 1;
             if (type == 'm')
             {
                 multiplier = 60;
@@ -49,16 +46,22 @@ static void Menu()
             {
                 multiplier = 3600;
             }
-            if (time < 0)
+            if (time <= 0)
             {
                 Console.Clear();
                 Console.WriteLine("Número não válido!");
                 Thread.Sleep(2000);
                 successTime = false;
             }
-            if (successTime && successType)
+            if (successTime)
                 PreStart(time * multiplier);
-        }  
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Digite um número válido");
+            Thread.Sleep(2000);
+        }
     }
     while(successTime == false || successType == false);
 }
